@@ -6,7 +6,9 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
-
+using OpenCvSharp;
+using OpenCvSharp.Blob;
+using OpenCvSharp.Extensions;
 namespace RealSenseProject
 {
     public class HandsRecognition
@@ -31,7 +33,10 @@ namespace RealSenseProject
             private string gesture;
             long last, freq;
             public Action handler;
-            
+            //private double []xSource = new double[4]; // W, A, S, D, Stop
+            //private double []ySource = new double[4]; // W, A, S, D, Stop
+            //double xw, yw, xa, ya, xs, ys, xd, yd, xStop,yStop;
+            public double xSource, ySource, threshold ;
             Hand handType;
             public GestureDetect()
             {
@@ -55,7 +60,13 @@ namespace RealSenseProject
                     }
                 }
             }
-
+            public void Check(double x,double y)
+            {
+                if((x-xSource)*(x-xSource)+(y-ySource)*(y-ySource) < threshold)
+                {
+                    handler();
+                }
+            }
             public string Gesture
             {
                 get
@@ -79,21 +90,29 @@ namespace RealSenseProject
                 }
             }
         }
-        private GestureDetect NextPageGesture;
-        private GestureDetect PreviousPageGesture;
-        private GestureDetect FirstPageGesture;
-        private GestureDetect EndPageGesture;
+        private GestureDetect Gesture_J;
+        private GestureDetect Gesture_K;
+        private GestureDetect Gesture_L;
+        private GestureDetect Gesture_U;
+        private GestureDetect Gesture_W;
+        private GestureDetect Gesture_S;
+        private GestureDetect Gesture_D;
+        private GestureDetect Gesture_A;
         public HandsRecognition(MainForm form)
         {
             m_images = new Queue<PXCMImage>();
             this.form = form;
             LUT = Enumerable.Repeat((byte)0, 256).ToArray();
             LUT[255] = 1;
-            NextPageGesture = new GestureDetect();
-            PreviousPageGesture = new GestureDetect();
-            FirstPageGesture = new GestureDetect();
-            EndPageGesture = new GestureDetect();
+            Gesture_J = new GestureDetect();
+            Gesture_K = new GestureDetect();
+            Gesture_L = new GestureDetect();
+            Gesture_U = new GestureDetect();
 
+            Gesture_W = new GestureDetect();
+            Gesture_S = new GestureDetect();
+            Gesture_D = new GestureDetect();
+            Gesture_A = new GestureDetect();
         }
 
         /* Checking if sensor device connect or not */
@@ -138,18 +157,18 @@ namespace RealSenseProject
                     if (bodySideType == PXCMHandData.BodySideType.BODY_SIDE_LEFT)
                     {
                         gestureStatusLeft += "Left Hand Gesture: " + gestureData.name;
-                        NextPageGesture.Check(gestureData.name,Hand.LeftHand,form.GetInterval());
-                        PreviousPageGesture.Check(gestureData.name,Hand.LeftHand,form.GetInterval());
-                        FirstPageGesture.Check(gestureData.name, Hand.LeftHand, form.GetInterval());
-                        EndPageGesture.Check(gestureData.name, Hand.LeftHand, form.GetInterval());
+                        Gesture_J.Check(gestureData.name,Hand.LeftHand,form.GetInterval());
+                        Gesture_K.Check(gestureData.name,Hand.LeftHand,form.GetInterval());
+                        Gesture_L.Check(gestureData.name, Hand.LeftHand, form.GetInterval());
+                        Gesture_U.Check(gestureData.name, Hand.LeftHand, form.GetInterval());
                     }
                     else if (bodySideType == PXCMHandData.BodySideType.BODY_SIDE_RIGHT)
                     {
                         gestureStatusRight += "Right Hand Gesture: " + gestureData.name;
-                        NextPageGesture.Check(gestureData.name, Hand.RightHand, form.GetInterval());
-                        PreviousPageGesture.Check(gestureData.name, Hand.RightHand, form.GetInterval());
-                        FirstPageGesture.Check(gestureData.name, Hand.RightHand, form.GetInterval());
-                        EndPageGesture.Check(gestureData.name, Hand.RightHand, form.GetInterval());
+                        Gesture_J.Check(gestureData.name, Hand.RightHand, form.GetInterval());
+                        Gesture_K.Check(gestureData.name, Hand.RightHand, form.GetInterval());
+                        Gesture_L.Check(gestureData.name, Hand.RightHand, form.GetInterval());
+                        Gesture_U.Check(gestureData.name, Hand.RightHand, form.GetInterval());
                     }
 
                     
@@ -178,7 +197,7 @@ namespace RealSenseProject
                 Bitmap labeledBitmap = null;
                 try
                 {
-                    labeledBitmap = new Bitmap(image.info.width, image.info.height, PixelFormat.Format32bppRgb);
+                    labeledBitmap = new Bitmap(image.info.width, image.info.height, PixelFormat.Format32bppRgb); // 手势的识别图
                 }
                 catch (Exception)
                 {
@@ -251,6 +270,11 @@ namespace RealSenseProject
                 if (labeledBitmap != null)
                 {
                     form.DisplayBitmap(labeledBitmap);
+                    // 这里对labeledBitmap进行处理
+                    // 先将其转换成mat进行处理
+                    Mat cvImg;
+
+
                     labeledBitmap.Dispose();
                 }
                 image.Dispose();
@@ -339,6 +363,7 @@ namespace RealSenseProject
                 //Iterate hands
                 PXCMHandData.JointData[][] nodes = new PXCMHandData.JointData[][] { new PXCMHandData.JointData[0x20], new PXCMHandData.JointData[0x20] };
                 int numOfHands = handOutput.QueryNumberOfHands();
+                if (numOfHands > 1) numOfHands = 1;
                 for (int i = 0; i < numOfHands; i++)
                 {
                     //Get hand by time of appearence
@@ -349,13 +374,26 @@ namespace RealSenseProject
                         if (handData != null)
                         {
                             //Iterate Joints
+                            float xsum = 0;
+                            float ysum = 0;
+                            int num = 0;
                             for (int j = 0; j < 0x20; j++)
                             {
                                 PXCMHandData.JointData jointData;
                                 handData.QueryTrackedJoint((PXCMHandData.JointType)j, out jointData);
                                 nodes[i][j] = jointData;
-
+                                if(jointData.positionImage.x > 0 && jointData.positionImage.y > 0)
+                                {
+                                    xsum += jointData.positionImage.x;
+                                    ysum += jointData.positionImage.y;
+                                    num++;
+                                }
+                                
                             } // end iterating over joints
+                            float xmean = xsum / num;
+                            float ymean = ysum / num;
+                            //Console.WriteLine(String.Format("({0},{0})",xsum/num ,ysum/num ));
+                            form.DisplayHandPointAndPressKey(xmean, ymean);
                         }
                     }
                 } // end itrating over hands
@@ -576,41 +614,41 @@ namespace RealSenseProject
                 form.UpdateStatus("Streaming");
                 int frameCounter = 0;
                 int frameNumber = 0;
-                string nextPageGesture, previousPageGesture, firstPageGesture, endPageGesture;
-                HandsRecognition.Hand nextHand,previousHand, firstHand, endHand;
+                string gesture_J, gesture_K, gesture_L, gesture_U;
+                HandsRecognition.Hand hand_J,hand_K, hand_L, hand_U;
                 
                 while (!form.stop)
                 {
-                    form.GetHandType(out nextHand, out previousHand, out firstHand, out endHand);
-                    form.GetGestureName(out nextPageGesture, out previousPageGesture, out firstPageGesture, out endPageGesture);
+                    form.GetHandType(out hand_J, out hand_K, out hand_L, out hand_U);
+                    form.GetGestureName(out gesture_J, out gesture_K, out gesture_L, out gesture_U);
                     handConfiguration.DisableAllGestures();
-                    if (string.IsNullOrEmpty(nextPageGesture) == false && handConfiguration.IsGestureEnabled(nextPageGesture) == false)
+                    if (string.IsNullOrEmpty(gesture_J) == false && handConfiguration.IsGestureEnabled(gesture_J) == false)
                     {
-                        handConfiguration.EnableGesture(nextPageGesture, true);
-                        NextPageGesture.Gesture = nextPageGesture;
-                        NextPageGesture.handler = form.NextPage;
-                        NextPageGesture.HandType = nextHand;
+                        handConfiguration.EnableGesture(gesture_J, true);
+                        Gesture_J.Gesture = gesture_J;
+                        Gesture_J.handler = form.JClick;
+                        Gesture_J.HandType = hand_J;
                     }
-                    if (string.IsNullOrEmpty(previousPageGesture) == false && handConfiguration.IsGestureEnabled(previousPageGesture) == false)
+                    if (string.IsNullOrEmpty(gesture_K) == false && handConfiguration.IsGestureEnabled(gesture_K) == false)
                     {
-                        handConfiguration.EnableGesture(previousPageGesture, true);
-                        PreviousPageGesture.Gesture = previousPageGesture;
-                        PreviousPageGesture.handler = form.PreviousPage;
-                        PreviousPageGesture.HandType = previousHand;
+                        handConfiguration.EnableGesture(gesture_K, true);
+                        Gesture_K.Gesture = gesture_K;
+                        Gesture_K.handler = form.KClick;
+                        Gesture_K.HandType = hand_K;
                     }
-                    if (string.IsNullOrEmpty(firstPageGesture) == false && handConfiguration.IsGestureEnabled(firstPageGesture) == false)
+                    if (string.IsNullOrEmpty(gesture_L) == false && handConfiguration.IsGestureEnabled(gesture_L) == false)
                     {
-                        handConfiguration.EnableGesture(firstPageGesture, true);
-                        FirstPageGesture.Gesture = firstPageGesture;
-                        FirstPageGesture.handler = form.FirstPage;
-                        FirstPageGesture.HandType = firstHand;
+                        handConfiguration.EnableGesture(gesture_L, true);
+                        Gesture_L.Gesture = gesture_L;
+                        Gesture_L.handler = form.LClick;
+                        Gesture_L.HandType = hand_L;
                     }
-                    if (string.IsNullOrEmpty(endPageGesture) == false && handConfiguration.IsGestureEnabled(endPageGesture) == false)
+                    if (string.IsNullOrEmpty(gesture_U) == false && handConfiguration.IsGestureEnabled(gesture_U) == false)
                     {
-                        handConfiguration.EnableGesture(endPageGesture, true);
-                        EndPageGesture.Gesture = endPageGesture;
-                        EndPageGesture.handler = form.EndPage;
-                        EndPageGesture.HandType = endHand;
+                        handConfiguration.EnableGesture(gesture_U, true);
+                        Gesture_U.Gesture = gesture_U;
+                        Gesture_U.handler = form.UClick;
+                        Gesture_U.HandType = hand_U;
                     }
                     handConfiguration.ApplyChanges();
                     if (instance.AcquireFrame(true) < pxcmStatus.PXCM_STATUS_NO_ERROR)

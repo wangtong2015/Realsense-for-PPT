@@ -156,7 +156,6 @@ namespace RealSenseProject
             keybd_event(vbKeyUp, 0, 2, 0);
 
         }
-
         
     }
 }

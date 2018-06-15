@@ -49,6 +49,21 @@ namespace RealSenseProject
         public Action PreviousPage;
         public Action FirstPage;
         public Action EndPage;
+        public Action KClick;
+        public Action JClick;
+        public Action LClick;
+        public Action SpaceClick;
+        public Action UClick;
+        public Action IClick;
+        public Action WClick;
+        public Action AClick;
+        public Action DClick;
+        public Action SClick;
+        public Action WPress;
+        public Action APress;
+        public Action SPress;
+        public Action DPress;
+        public Action keyRelease;
         private class Item
         {
             public string Name;
@@ -72,10 +87,10 @@ namespace RealSenseProject
             this.g_session = session;
             PopulateDeviceMenu();
             PopulateModuleMenu();
-            nextGestureBox.Enabled = false;
-            upGestureBox.Enabled = false;
-            firstGestureBox.Enabled = false;
-            endGestureBox.Enabled = false;
+            GestureBox_1.Enabled = false;
+            GestureBox_2.Enabled = false;
+            GestureBox_3.Enabled = false;
+            GestureBox_4.Enabled = false;
             FormClosing += new FormClosingEventHandler(MainForm_FormClosing);
             Panel2.Paint += new PaintEventHandler(Panel_Paint);
             timer.Tick += new EventHandler(timer_Tick);
@@ -85,38 +100,125 @@ namespace RealSenseProject
             PreviousPage = ()=> { };
             FirstPage = ()=> { };
             EndPage = ()=> { };
+            JClick = () => {
+                //模拟按下J键
+                keybd_event(vbKeyJ, 0, 0, 0);
+                //松开按键J键
+                keybd_event(vbKeyJ, 0, 2, 0);
+            };
+            KClick = () => {
+                //模拟按下K键
+                keybd_event(vbKeyK, 0, 0, 0);
+                //松开按键K键
+                keybd_event(vbKeyK, 0, 2, 0);
+            };
+            LClick = () => {
+                //模拟按下L键
+                keybd_event(vbKeyL, 0, 0, 0);
+                //松开按键L键
+                keybd_event(vbKeyL, 0, 2, 0);
+            };
+            SpaceClick = () => {
+                //模拟按下Space键
+                keybd_event(vbKeySpace, 0, 0, 0);
+                //松开按键Space键
+                keybd_event(vbKeySpace, 0, 2, 0);
+            };
+            UClick = () => {
+                //模拟按下U键
+                keybd_event(vbKeyU, 0, 0, 0);
+                //松开按键U键
+                keybd_event(vbKeyU, 0, 2, 0);
+            };
+            IClick = () => {
+                //模拟按下I键
+                keybd_event(vbKeyI, 0, 0, 0);
+                //松开按键I键
+                keybd_event(vbKeyI, 0, 2, 0);
+            };
+            WClick = () => {
+                //模拟按下W键
+                keybd_event(vbKeyW, 0, 0, 0);
+                //松开按键W键
+                keybd_event(vbKeyW, 0, 2, 0);
+            };
+            AClick = () => {
+                //模拟按下A键
+                keybd_event(vbKeyA, 0, 0, 0);
+                //松开按键A键
+                keybd_event(vbKeyA, 0, 2, 0);
+            };
+            SClick = () => {
+                //模拟按下S键
+                keybd_event(vbKeyS, 0, 0, 0);
+                //松开按键S键
+                keybd_event(vbKeyS, 0, 2, 0);
+            };
+            DClick = () => {
+                //模拟按下D键
+                keybd_event(vbKeyD, 0, 0, 0);
+                //松开按键D键
+                keybd_event(vbKeyD, 0, 2, 0);
+            };
+            WPress = () => {
+                //模拟按下W键
+                keybd_event(vbKeyW, 0, 0, 0);
+            };
+            APress = () => {
+                //模拟按下A键
+                keybd_event(vbKeyA, 0, 0, 0);
+            };
+            SPress = () => {
+                //模拟按下S键
+                keybd_event(vbKeyS, 0, 0, 0);
+            };
+            DPress = () => {
+                //模拟按下A键
+                keybd_event(vbKeyD, 0, 0, 0);
+            };
 
-    }
+            keyRelease = () =>
+            {
+                //松开按键W键
+                keybd_event(vbKeyW, 0, 2, 0);
+                //松开按键A键
+                keybd_event(vbKeyA, 0, 2, 0);
+                //松开按键S键
+                keybd_event(vbKeyS, 0, 2, 0);
+                //松开按键D键
+                keybd_event(vbKeyD, 0, 2, 0);
+            };
+        }
 
 
 
         private delegate void UpdateGesturesToListDelegate(string gestureName, int index);
         public void UpdateGesturesToList(string gestureName, int index)
         {
-            nextGestureBox.Invoke(new UpdateGesturesToListDelegate(delegate (string name, int cmbIndex) 
+            GestureBox_1.Invoke(new UpdateGesturesToListDelegate(delegate (string name, int cmbIndex) 
             {
-                nextGestureBox.Items.Add(new Item(name, cmbIndex));
+                GestureBox_1.Items.Add(new Item(name, cmbIndex));
             }), 
                 new object[] { gestureName, index }
             );
 
-            upGestureBox.Invoke(new UpdateGesturesToListDelegate(delegate (string name, int cmbIndex)
+            GestureBox_2.Invoke(new UpdateGesturesToListDelegate(delegate (string name, int cmbIndex)
             {
-                upGestureBox.Items.Add(new Item(name, cmbIndex));
+                GestureBox_2.Items.Add(new Item(name, cmbIndex));
             }),
                 new object[] { gestureName, index }
             );
 
-            firstGestureBox.Invoke(new UpdateGesturesToListDelegate(delegate (string name, int cmbIndex)
+            GestureBox_3.Invoke(new UpdateGesturesToListDelegate(delegate (string name, int cmbIndex)
             {
-                firstGestureBox.Items.Add(new Item(name, cmbIndex));
+                GestureBox_3.Items.Add(new Item(name, cmbIndex));
             }),
                 new object[] { gestureName, index }
             );
 
-            endGestureBox.Invoke(new UpdateGesturesToListDelegate(delegate (string name, int cmbIndex)
+            GestureBox_4.Invoke(new UpdateGesturesToListDelegate(delegate (string name, int cmbIndex)
             {
-                endGestureBox.Items.Add(new Item(name, cmbIndex));
+                GestureBox_4.Items.Add(new Item(name, cmbIndex));
             }),
                 new object[] { gestureName, index }
             );
@@ -132,10 +234,10 @@ namespace RealSenseProject
         private delegate void UpdateGesturesListSizeDelegate();
         public void UpdateGesturesListSize()
         {
-            nextGestureBox.Invoke(new UpdateGesturesListSizeDelegate(delegate () { nextGestureBox.Enabled = true; nextGestureBox.Size = new System.Drawing.Size(121, 70); }), new object[] { });
-            upGestureBox.Invoke(new UpdateGesturesListSizeDelegate(delegate () { upGestureBox.Enabled = true; upGestureBox.Size = new System.Drawing.Size(121, 70); }), new object[] { });
-            firstGestureBox.Invoke(new UpdateGesturesListSizeDelegate(delegate () { firstGestureBox.Enabled = true; firstGestureBox.Size = new System.Drawing.Size(121, 70); }), new object[] { });
-            endGestureBox.Invoke(new UpdateGesturesListSizeDelegate(delegate () { endGestureBox.Enabled = true; endGestureBox.Size = new System.Drawing.Size(121, 70); }), new object[] { });
+            GestureBox_1.Invoke(new UpdateGesturesListSizeDelegate(delegate () { GestureBox_1.Enabled = true; GestureBox_1.Size = new System.Drawing.Size(121, 70); }), new object[] { });
+            GestureBox_2.Invoke(new UpdateGesturesListSizeDelegate(delegate () { GestureBox_2.Enabled = true; GestureBox_2.Size = new System.Drawing.Size(121, 70); }), new object[] { });
+            GestureBox_3.Invoke(new UpdateGesturesListSizeDelegate(delegate () { GestureBox_3.Enabled = true; GestureBox_3.Size = new System.Drawing.Size(121, 70); }), new object[] { });
+            GestureBox_4.Invoke(new UpdateGesturesListSizeDelegate(delegate () { GestureBox_4.Enabled = true; GestureBox_4.Size = new System.Drawing.Size(121, 70); }), new object[] { });
         }
 
         public bool getInitGesturesFirstTime()
@@ -438,6 +540,142 @@ namespace RealSenseProject
                 }
             }
         }
+        public void DisplayHandPointAndPressKey(float x, float y) // 上下左右中
+        {
+            if (bitmap == null) return;
+            Graphics g = Graphics.FromImage(bitmap);
+            Point[] points = new Point[4]; // WSAD
+            Point[] circleBorder = new Point[4]; // 画线的四个角点
+            int width = 640;
+            int height = 480;
+            int DXY = 70;
+            int radius = 100;
+            points[0] = new Point(width/2, 0);
+            points[1] = new Point(width/2, height);
+            points[2] = new Point(0, height/2);
+            points[3] = new Point(width, height/2);
+            
+            Point center = new Point(width/2, height/2);
+            circleBorder[0] = new Point(center.X - DXY, center.Y - DXY);
+            circleBorder[1] = new Point(center.X + DXY, center.Y - DXY);
+            circleBorder[2] = new Point(center.X - DXY, center.Y + DXY);
+            circleBorder[3] = new Point(center.X + DXY, center.Y + DXY);
+            int position = 0;
+            using (Pen boneColor = new Pen(Color.DodgerBlue, 3.0f))
+            {
+                // g.DrawLine(boneColor, new Point(x, y), new Point(x, y));
+                using (
+                            Pen red = new Pen(Color.Red, 3.0f),
+                                black = new Pen(Color.Black, 3.0f),
+                                green = new Pen(Color.Green, 3.0f),
+                                blue = new Pen(Color.Blue, 3.0f),
+                                cyan = new Pen(Color.Cyan, 3.0f),
+                                yellow = new Pen(Color.Yellow, 3.0f),
+                                orange = new Pen(Color.Orange, 3.0f))
+                {
+                    if ((x - center.X) * (x - center.X) + (y - center.Y) * (y - center.Y) < radius * radius)
+                    {
+                        position = 4;
+                    }
+                    else
+                    {
+                        float minDis = 100000;
+                        for(int i = 0; i < 4; i++)
+                        {
+                            float dis = (x - points[i].X) * (x - points[i].X) + (y - points[i].Y) * (y - points[i].Y);
+                            if (dis < minDis)
+                            {
+                                minDis = dis;
+                                position = i;
+                            }
+                        }
+                    }
+                    switch (position)
+                    {
+                        case 0:// W
+                            {
+                                WPress();
+                                g.DrawLine(red, new Point(0, 0), circleBorder[0]);
+                                g.DrawLine(red, new Point(width, 0), circleBorder[1]);
+                                g.DrawLine(green, new Point(0, height), circleBorder[2]);
+                                g.DrawLine(green, new Point(width, height), circleBorder[3]);
+                                g.DrawEllipse(green, center.X - radius, center.Y - radius, 2*radius, 2*radius);
+                                break;
+                            }
+                        case 1:// S
+                            {
+                                SPress();
+                                g.DrawLine(green, new Point(0, 0), circleBorder[0]);
+                                g.DrawLine(green, new Point(width, 0), circleBorder[1]);
+                                g.DrawLine(red, new Point(0, height), circleBorder[2]);
+                                g.DrawLine(red, new Point(width, height), circleBorder[3]);
+                                g.DrawEllipse(green, center.X - radius, center.Y - radius, 2 * radius, 2 * radius);
+                                break;
+                            }
+                        case 2:// A // 反过来变成D
+                            {
+                                DPress();
+                                g.DrawLine(red, new Point(0, 0), circleBorder[0]);
+                                g.DrawLine(green, new Point(width, 0), circleBorder[1]);
+                                g.DrawLine(red, new Point(0, height), circleBorder[2]);
+                                g.DrawLine(green, new Point(width, height), circleBorder[3]);
+                                g.DrawEllipse(green, center.X - radius, center.Y - radius, 2 * radius, 2 * radius);
+                                break;
+                            }
+                        case 3:// D // 反过来变成A
+                            {
+                                APress();
+                                g.DrawLine(green, new Point(0, 0), circleBorder[0]);
+                                g.DrawLine(red, new Point(width, 0), circleBorder[1]);
+                                g.DrawLine(green, new Point(0, height), circleBorder[2]);
+                                g.DrawLine(red, new Point(width, height), circleBorder[3]);
+                                g.DrawEllipse(green, center.X - radius, center.Y - radius, 2 * radius, 2 * radius);
+                                break;
+                            }
+                        case 4:// stop
+                            {
+                                keyRelease();
+                                g.DrawLine(green, new Point(0, 0), circleBorder[0]);
+                                g.DrawLine(green, new Point(width, 0), circleBorder[1]);
+                                g.DrawLine(green, new Point(0, height), circleBorder[2]);
+                                g.DrawLine(green, new Point(width, height), circleBorder[3]);
+                                g.DrawEllipse(red, center.X - radius, center.Y - radius, 2 * radius, 2 * radius);
+                                break;
+                            }
+                    }
+                    g.DrawEllipse(blue, x - 20, y - 20, 40, 40);
+
+                }
+            }
+            g.Dispose();
+            
+
+        }
+        public void DisplayPoint(float x, float y, float sz)
+        {
+            if (bitmap == null) return;
+            Graphics g = Graphics.FromImage(bitmap);
+            //Console.WriteLine(String.Format("w:{0},h:{0}", bitmap.Width, bitmap.Height));
+            
+
+            using (Pen boneColor = new Pen(Color.DodgerBlue, 3.0f))
+            {
+                // g.DrawLine(boneColor, new Point(x, y), new Point(x, y));
+                using (
+                            Pen red = new Pen(Color.Red, 3.0f),
+                                black = new Pen(Color.Black, 3.0f),
+                                green = new Pen(Color.Green, 3.0f),
+                                blue = new Pen(Color.Blue, 3.0f),
+                                cyan = new Pen(Color.Cyan, 3.0f),
+                                yellow = new Pen(Color.Yellow, 3.0f),
+                                orange = new Pen(Color.Orange, 3.0f))
+                {
+                    Pen currnetPen = red;
+                    g.DrawEllipse(currnetPen, x - sz / 2, y - sz / 2, sz, sz);
+                }
+            }
+            g.Dispose();
+        }
 
         public void DisplayJoints(PXCMHandData.JointData[][] nodes, int numOfHands)
         {
@@ -708,22 +946,22 @@ namespace RealSenseProject
         
         private void nextGestureBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            nextPageGesture = nextGestureBox.SelectedItem.ToString();
+            nextPageGesture = GestureBox_1.SelectedItem.ToString();
         }
 
         private void upGestureBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            previousPageGesture = upGestureBox.SelectedItem.ToString();
+            previousPageGesture = GestureBox_2.SelectedItem.ToString();
         }
 
         private void firstGestureBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            firstPageGesture = firstGestureBox.SelectedItem.ToString();
+            firstPageGesture = GestureBox_3.SelectedItem.ToString();
         }
 
         private void endGestureBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            endPageGesture = endGestureBox.SelectedItem.ToString();
+            endPageGesture = GestureBox_4.SelectedItem.ToString();
         }
 
         public int GetInterval()
@@ -755,7 +993,7 @@ namespace RealSenseProject
         }
         private void NextHandBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            nextHand = stringToHand(NextHandBox.SelectedItem.ToString());
+            nextHand = stringToHand(HandBox_1.SelectedItem.ToString());
             UpdateInfo("nextHand:" + nextHand.ToString());
         }
 
@@ -763,19 +1001,19 @@ namespace RealSenseProject
 
         private void PreviousHandBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            previousHand = stringToHand(PreviousHandBox.SelectedItem.ToString());
+            previousHand = stringToHand(HandBox_2.SelectedItem.ToString());
             UpdateInfo("previousHand:" + previousHand.ToString());
         }
 
         private void FirstHandBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            firstHand = stringToHand(FirstHandBox.SelectedItem.ToString());
+            firstHand = stringToHand(HandBox_3.SelectedItem.ToString());
             UpdateInfo("firstHand:" + firstHand.ToString());
         }
 
         private void EndHandBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            endHand = stringToHand(EndHandBox.SelectedItem.ToString());
+            endHand = stringToHand(HandBox_4.SelectedItem.ToString());
             UpdateInfo("endHand:" + endHand.ToString());
         }
     }

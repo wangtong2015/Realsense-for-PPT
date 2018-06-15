@@ -46,7 +46,7 @@
             this.Scale2 = new System.Windows.Forms.CheckBox();
             this.Panel2 = new System.Windows.Forms.PictureBox();
             this.Mirror = new System.Windows.Forms.CheckBox();
-            this.nextGestureBox = new System.Windows.Forms.ComboBox();
+            this.GestureBox_1 = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.labelFPS = new System.Windows.Forms.Label();
             this.infoTextBox = new System.Windows.Forms.RichTextBox();
@@ -58,15 +58,15 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.upGestureBox = new System.Windows.Forms.ComboBox();
-            this.firstGestureBox = new System.Windows.Forms.ComboBox();
-            this.endGestureBox = new System.Windows.Forms.ComboBox();
+            this.GestureBox_2 = new System.Windows.Forms.ComboBox();
+            this.GestureBox_3 = new System.Windows.Forms.ComboBox();
+            this.GestureBox_4 = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.numericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.NextHandBox = new System.Windows.Forms.ComboBox();
-            this.PreviousHandBox = new System.Windows.Forms.ComboBox();
-            this.FirstHandBox = new System.Windows.Forms.ComboBox();
-            this.EndHandBox = new System.Windows.Forms.ComboBox();
+            this.HandBox_1 = new System.Windows.Forms.ComboBox();
+            this.HandBox_2 = new System.Windows.Forms.ComboBox();
+            this.HandBox_3 = new System.Windows.Forms.ComboBox();
+            this.HandBox_4 = new System.Windows.Forms.ComboBox();
             this.MainMenu.SuspendLayout();
             this.Status2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Panel2)).BeginInit();
@@ -265,24 +265,24 @@
             this.Mirror.Text = "Mirror";
             this.Mirror.UseVisualStyleBackColor = true;
             // 
-            // nextGestureBox
+            // GestureBox_1
             // 
-            this.nextGestureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.nextGestureBox.FormattingEnabled = true;
-            this.nextGestureBox.Location = new System.Drawing.Point(1008, 244);
-            this.nextGestureBox.Name = "nextGestureBox";
-            this.nextGestureBox.Size = new System.Drawing.Size(121, 29);
-            this.nextGestureBox.TabIndex = 35;
-            this.nextGestureBox.SelectedIndexChanged += new System.EventHandler(this.nextGestureBox_SelectedIndexChanged);
+            this.GestureBox_1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.GestureBox_1.FormattingEnabled = true;
+            this.GestureBox_1.Location = new System.Drawing.Point(1008, 244);
+            this.GestureBox_1.Name = "GestureBox_1";
+            this.GestureBox_1.Size = new System.Drawing.Size(121, 29);
+            this.GestureBox_1.TabIndex = 35;
+            this.GestureBox_1.SelectedIndexChanged += new System.EventHandler(this.nextGestureBox_SelectedIndexChanged);
             // 
             // label2
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.Location = new System.Drawing.Point(882, 244);
+            this.label2.Location = new System.Drawing.Point(876, 244);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(114, 35);
             this.label2.TabIndex = 38;
-            this.label2.Text = "next page";
+            this.label2.Text = "J";
             // 
             // labelFPS
             // 
@@ -349,56 +349,56 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(843, 296);
+            this.label4.Location = new System.Drawing.Point(876, 293);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(153, 21);
+            this.label4.Size = new System.Drawing.Size(21, 21);
             this.label4.TabIndex = 46;
-            this.label4.Text = "previous page";
+            this.label4.Text = "K";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(876, 346);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(120, 21);
+            this.label5.Size = new System.Drawing.Size(21, 21);
             this.label5.TabIndex = 47;
-            this.label5.Text = "first page";
+            this.label5.Text = "L";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(898, 390);
+            this.label6.Location = new System.Drawing.Point(876, 393);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(98, 21);
+            this.label6.Size = new System.Drawing.Size(21, 21);
             this.label6.TabIndex = 48;
-            this.label6.Text = "end page";
+            this.label6.Text = "U";
             // 
-            // upGestureBox
+            // GestureBox_2
             // 
-            this.upGestureBox.FormattingEnabled = true;
-            this.upGestureBox.Location = new System.Drawing.Point(1008, 293);
-            this.upGestureBox.Name = "upGestureBox";
-            this.upGestureBox.Size = new System.Drawing.Size(121, 29);
-            this.upGestureBox.TabIndex = 49;
-            this.upGestureBox.SelectedIndexChanged += new System.EventHandler(this.upGestureBox_SelectedIndexChanged);
+            this.GestureBox_2.FormattingEnabled = true;
+            this.GestureBox_2.Location = new System.Drawing.Point(1008, 293);
+            this.GestureBox_2.Name = "GestureBox_2";
+            this.GestureBox_2.Size = new System.Drawing.Size(121, 29);
+            this.GestureBox_2.TabIndex = 49;
+            this.GestureBox_2.SelectedIndexChanged += new System.EventHandler(this.upGestureBox_SelectedIndexChanged);
             // 
-            // firstGestureBox
+            // GestureBox_3
             // 
-            this.firstGestureBox.FormattingEnabled = true;
-            this.firstGestureBox.Location = new System.Drawing.Point(1008, 346);
-            this.firstGestureBox.Name = "firstGestureBox";
-            this.firstGestureBox.Size = new System.Drawing.Size(121, 29);
-            this.firstGestureBox.TabIndex = 50;
-            this.firstGestureBox.SelectedIndexChanged += new System.EventHandler(this.firstGestureBox_SelectedIndexChanged);
+            this.GestureBox_3.FormattingEnabled = true;
+            this.GestureBox_3.Location = new System.Drawing.Point(1008, 346);
+            this.GestureBox_3.Name = "GestureBox_3";
+            this.GestureBox_3.Size = new System.Drawing.Size(121, 29);
+            this.GestureBox_3.TabIndex = 50;
+            this.GestureBox_3.SelectedIndexChanged += new System.EventHandler(this.firstGestureBox_SelectedIndexChanged);
             // 
-            // endGestureBox
+            // GestureBox_4
             // 
-            this.endGestureBox.FormattingEnabled = true;
-            this.endGestureBox.Location = new System.Drawing.Point(1008, 390);
-            this.endGestureBox.Name = "endGestureBox";
-            this.endGestureBox.Size = new System.Drawing.Size(121, 29);
-            this.endGestureBox.TabIndex = 51;
-            this.endGestureBox.SelectedIndexChanged += new System.EventHandler(this.endGestureBox_SelectedIndexChanged);
+            this.GestureBox_4.FormattingEnabled = true;
+            this.GestureBox_4.Location = new System.Drawing.Point(1008, 390);
+            this.GestureBox_4.Name = "GestureBox_4";
+            this.GestureBox_4.Size = new System.Drawing.Size(121, 29);
+            this.GestureBox_4.TabIndex = 51;
+            this.GestureBox_4.SelectedIndexChanged += new System.EventHandler(this.endGestureBox_SelectedIndexChanged);
             // 
             // label7
             // 
@@ -431,77 +431,77 @@
             0,
             0});
             // 
-            // NextHandBox
+            // HandBox_1
             // 
-            this.NextHandBox.DisplayMember = "0";
-            this.NextHandBox.FormattingEnabled = true;
-            this.NextHandBox.Items.AddRange(new object[] {
+            this.HandBox_1.DisplayMember = "0";
+            this.HandBox_1.FormattingEnabled = true;
+            this.HandBox_1.Items.AddRange(new object[] {
             "left_hand",
             "right_hand",
             "both_hands"});
-            this.NextHandBox.Location = new System.Drawing.Point(1153, 244);
-            this.NextHandBox.Name = "NextHandBox";
-            this.NextHandBox.Size = new System.Drawing.Size(121, 29);
-            this.NextHandBox.TabIndex = 54;
-            this.NextHandBox.Text = "left_hand";
-            this.NextHandBox.SelectedIndexChanged += new System.EventHandler(this.NextHandBox_SelectedIndexChanged);
+            this.HandBox_1.Location = new System.Drawing.Point(1153, 244);
+            this.HandBox_1.Name = "HandBox_1";
+            this.HandBox_1.Size = new System.Drawing.Size(121, 29);
+            this.HandBox_1.TabIndex = 54;
+            this.HandBox_1.Text = "left_hand";
+            this.HandBox_1.SelectedIndexChanged += new System.EventHandler(this.NextHandBox_SelectedIndexChanged);
             // 
-            // PreviousHandBox
+            // HandBox_2
             // 
-            this.PreviousHandBox.FormattingEnabled = true;
-            this.PreviousHandBox.Items.AddRange(new object[] {
+            this.HandBox_2.FormattingEnabled = true;
+            this.HandBox_2.Items.AddRange(new object[] {
             "left_hand",
             "right_hand",
             "both_hands"});
-            this.PreviousHandBox.Location = new System.Drawing.Point(1153, 296);
-            this.PreviousHandBox.Name = "PreviousHandBox";
-            this.PreviousHandBox.Size = new System.Drawing.Size(121, 29);
-            this.PreviousHandBox.TabIndex = 55;
-            this.PreviousHandBox.Text = "left_hand";
-            this.PreviousHandBox.SelectedIndexChanged += new System.EventHandler(this.PreviousHandBox_SelectedIndexChanged);
+            this.HandBox_2.Location = new System.Drawing.Point(1153, 296);
+            this.HandBox_2.Name = "HandBox_2";
+            this.HandBox_2.Size = new System.Drawing.Size(121, 29);
+            this.HandBox_2.TabIndex = 55;
+            this.HandBox_2.Text = "left_hand";
+            this.HandBox_2.SelectedIndexChanged += new System.EventHandler(this.PreviousHandBox_SelectedIndexChanged);
             // 
-            // FirstHandBox
+            // HandBox_3
             // 
-            this.FirstHandBox.FormattingEnabled = true;
-            this.FirstHandBox.Items.AddRange(new object[] {
+            this.HandBox_3.FormattingEnabled = true;
+            this.HandBox_3.Items.AddRange(new object[] {
             "left_hand",
             "right_hand",
             "both_hands"});
-            this.FirstHandBox.Location = new System.Drawing.Point(1153, 346);
-            this.FirstHandBox.Name = "FirstHandBox";
-            this.FirstHandBox.Size = new System.Drawing.Size(121, 29);
-            this.FirstHandBox.TabIndex = 56;
-            this.FirstHandBox.Text = "right_hand";
-            this.FirstHandBox.SelectedIndexChanged += new System.EventHandler(this.FirstHandBox_SelectedIndexChanged);
+            this.HandBox_3.Location = new System.Drawing.Point(1153, 346);
+            this.HandBox_3.Name = "HandBox_3";
+            this.HandBox_3.Size = new System.Drawing.Size(121, 29);
+            this.HandBox_3.TabIndex = 56;
+            this.HandBox_3.Text = "right_hand";
+            this.HandBox_3.SelectedIndexChanged += new System.EventHandler(this.FirstHandBox_SelectedIndexChanged);
             // 
-            // EndHandBox
+            // HandBox_4
             // 
-            this.EndHandBox.FormattingEnabled = true;
-            this.EndHandBox.Items.AddRange(new object[] {
+            this.HandBox_4.FormattingEnabled = true;
+            this.HandBox_4.Items.AddRange(new object[] {
             "left_hand",
             "right_hand",
             "both_hands"});
-            this.EndHandBox.Location = new System.Drawing.Point(1153, 390);
-            this.EndHandBox.Name = "EndHandBox";
-            this.EndHandBox.Size = new System.Drawing.Size(121, 29);
-            this.EndHandBox.TabIndex = 57;
-            this.EndHandBox.Text = "right_hand";
-            this.EndHandBox.SelectedIndexChanged += new System.EventHandler(this.EndHandBox_SelectedIndexChanged);
+            this.HandBox_4.Location = new System.Drawing.Point(1153, 390);
+            this.HandBox_4.Name = "HandBox_4";
+            this.HandBox_4.Size = new System.Drawing.Size(121, 29);
+            this.HandBox_4.TabIndex = 57;
+            this.HandBox_4.Text = "right_hand";
+            this.HandBox_4.SelectedIndexChanged += new System.EventHandler(this.EndHandBox_SelectedIndexChanged);
             // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1305, 560);
-            this.Controls.Add(this.EndHandBox);
-            this.Controls.Add(this.FirstHandBox);
-            this.Controls.Add(this.PreviousHandBox);
-            this.Controls.Add(this.NextHandBox);
+            this.Controls.Add(this.HandBox_4);
+            this.Controls.Add(this.HandBox_3);
+            this.Controls.Add(this.HandBox_2);
+            this.Controls.Add(this.HandBox_1);
             this.Controls.Add(this.numericUpDown);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.endGestureBox);
-            this.Controls.Add(this.firstGestureBox);
-            this.Controls.Add(this.upGestureBox);
+            this.Controls.Add(this.GestureBox_4);
+            this.Controls.Add(this.GestureBox_3);
+            this.Controls.Add(this.GestureBox_2);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -513,7 +513,7 @@
             this.Controls.Add(this.infoTextBox);
             this.Controls.Add(this.labelFPS);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.nextGestureBox);
+            this.Controls.Add(this.GestureBox_1);
             this.Controls.Add(this.Mirror);
             this.Controls.Add(this.Panel2);
             this.Controls.Add(this.Scale2);
@@ -562,7 +562,7 @@
         private System.Windows.Forms.ToolStripMenuItem Live;
         private System.Windows.Forms.ToolStripMenuItem Playback;
         private System.Windows.Forms.ToolStripMenuItem Record;
-        private System.Windows.Forms.ComboBox nextGestureBox;
+        
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label labelFPS;
         private System.Windows.Forms.RichTextBox infoTextBox;
@@ -574,15 +574,16 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ComboBox upGestureBox;
-        private System.Windows.Forms.ComboBox firstGestureBox;
-        private System.Windows.Forms.ComboBox endGestureBox;
+        private System.Windows.Forms.ComboBox GestureBox_2;
+        private System.Windows.Forms.ComboBox GestureBox_3;
+        private System.Windows.Forms.ComboBox GestureBox_4;
+        private System.Windows.Forms.ComboBox GestureBox_1;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.NumericUpDown numericUpDown;
-        private System.Windows.Forms.ComboBox NextHandBox;
-        private System.Windows.Forms.ComboBox PreviousHandBox;
-        private System.Windows.Forms.ComboBox FirstHandBox;
-        private System.Windows.Forms.ComboBox EndHandBox;
+        private System.Windows.Forms.NumericUpDown numericUpDown; // 记录连续两次触发的设置时长
+        private System.Windows.Forms.ComboBox HandBox_1;
+        private System.Windows.Forms.ComboBox HandBox_2;
+        private System.Windows.Forms.ComboBox HandBox_3;
+        private System.Windows.Forms.ComboBox HandBox_4;
     }
 }
 
