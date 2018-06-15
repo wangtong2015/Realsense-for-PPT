@@ -1,4 +1,4 @@
-# Realsense手势PPT翻页软件
+# Realsense大作业
 
 注意:需要先安装Intel Realsense SDK
 
@@ -29,10 +29,6 @@ PPT: 打开一个本地PPT文件(打开之后即为全屏模式, 取消全屏会
 理论上，随着深度信息的加入，手势识别、脸部识别、三维扫描重建等任务的难度也随之降低。但是实际中如何同时运用好 RGB 信息与深度信息，牵涉到很多复杂的计算机视觉算法。一般的开发者直接使用深度摄像头提供的深度信息，其开发的难度很高。本实验使用的是 Intel RealSense SDK，是由 Intel 开发的 RealSense 软件开发工具包，其中内建了手势交互、脸部识别、背景分割、场景感知、三维扫描重建等式计算视觉算法的接口。开发者只需要调用这些接口，开发过程不涉及对底层的深度信息的处理，大大的降低了开发难度。
 
 本实验利用 RealSense 摄像头，实现了通过手势操控游戏的功能。
-
-
-
-
 
 ## 方法描述
 
@@ -198,7 +194,7 @@ private void W_Click(object sender, EventArgs e)
 
 ### 操作界面
 
-![UI](../../%E5%AD%A6%E4%B9%A0%EF%BC%88%E7%A1%AC%E8%AF%BE%EF%BC%89/%E5%AA%92%E4%BD%93%E4%B8%8E%E8%AE%A4%E7%9F%A5/%E5%A4%A7%E4%BD%9C%E4%B8%9A/%E5%AA%92%E4%BD%93%E4%B8%8E%E8%AE%A4%E7%9F%A5%E5%A4%A7%E4%BD%9C%E4%B8%9A_%E7%8E%8B%E7%AB%A5_%E4%BB%BB%E8%BE%BE%E4%BC%9F_%E5%8D%95%E6%98%AD/assets/UI.PNG)
+![UI](assets/UI.PNG)
 
 该操作界面可以实时显示手势的识别结果，手势相对于屏幕的位置，并提供了修改按键绑定手势和左右手的选择框。
 
@@ -206,13 +202,13 @@ private void W_Click(object sender, EventArgs e)
 
 当识别到张开手掌位于右侧四分之一区域时，控制人物向右移动。
 
-![](../../%E5%AD%A6%E4%B9%A0%EF%BC%88%E7%A1%AC%E8%AF%BE%EF%BC%89/%E5%AA%92%E4%BD%93%E4%B8%8E%E8%AE%A4%E7%9F%A5/%E5%A4%A7%E4%BD%9C%E4%B8%9A/%E5%AA%92%E4%BD%93%E4%B8%8E%E8%AE%A4%E7%9F%A5%E5%A4%A7%E4%BD%9C%E4%B8%9A_%E7%8E%8B%E7%AB%A5_%E4%BB%BB%E8%BE%BE%E4%BC%9F_%E5%8D%95%E6%98%AD/%E5%90%91%E5%8F%B3%E7%A7%BB%E5%8A%A8.jpg)
+![](assets/向右移动.jpg)
 
 ### 跳起
 
 当识别到张开手掌位于上方四分之一区域时，控制人物向上跳起。
 
-![](../../%E5%AD%A6%E4%B9%A0%EF%BC%88%E7%A1%AC%E8%AF%BE%EF%BC%89/%E5%AA%92%E4%BD%93%E4%B8%8E%E8%AE%A4%E7%9F%A5/%E5%A4%A7%E4%BD%9C%E4%B8%9A/%E5%AA%92%E4%BD%93%E4%B8%8E%E8%AE%A4%E7%9F%A5%E5%A4%A7%E4%BD%9C%E4%B8%9A_%E7%8E%8B%E7%AB%A5_%E4%BB%BB%E8%BE%BE%E4%BC%9F_%E5%8D%95%E6%98%AD/%E8%B7%B3.jpg)
+![](assets/跳.jpg)
 
 
 
@@ -220,7 +216,7 @@ private void W_Click(object sender, EventArgs e)
 
 当识别到张开手掌位于上方四分之一区域时，控制人物下蹲防御。
 
-![](../../%E5%AD%A6%E4%B9%A0%EF%BC%88%E7%A1%AC%E8%AF%BE%EF%BC%89/%E5%AA%92%E4%BD%93%E4%B8%8E%E8%AE%A4%E7%9F%A5/%E5%A4%A7%E4%BD%9C%E4%B8%9A/%E5%AA%92%E4%BD%93%E4%B8%8E%E8%AE%A4%E7%9F%A5%E5%A4%A7%E4%BD%9C%E4%B8%9A_%E7%8E%8B%E7%AB%A5_%E4%BB%BB%E8%BE%BE%E4%BC%9F_%E5%8D%95%E6%98%AD/%E4%B8%8B%E8%B9%B2.jpg)
+![](assets/下蹲.jpg)
 
 
 
@@ -228,7 +224,7 @@ private void W_Click(object sender, EventArgs e)
 
 当识别到手呈握拳状时，控制人物出重拳。
 
-![](../../%E5%AD%A6%E4%B9%A0%EF%BC%88%E7%A1%AC%E8%AF%BE%EF%BC%89/%E5%AA%92%E4%BD%93%E4%B8%8E%E8%AE%A4%E7%9F%A5/%E5%A4%A7%E4%BD%9C%E4%B8%9A/%E5%AA%92%E4%BD%93%E4%B8%8E%E8%AE%A4%E7%9F%A5%E5%A4%A7%E4%BD%9C%E4%B8%9A_%E7%8E%8B%E7%AB%A5_%E4%BB%BB%E8%BE%BE%E4%BC%9F_%E5%8D%95%E6%98%AD/%E9%87%8D%E6%8B%B3.jpg)
+![](assets/重拳.jpg)
 
 
 
@@ -236,7 +232,7 @@ private void W_Click(object sender, EventArgs e)
 
 当识别到手呈V字状时，控制人物出轻拳。
 
-![](../../%E5%AD%A6%E4%B9%A0%EF%BC%88%E7%A1%AC%E8%AF%BE%EF%BC%89/%E5%AA%92%E4%BD%93%E4%B8%8E%E8%AE%A4%E7%9F%A5/%E5%A4%A7%E4%BD%9C%E4%B8%9A/%E5%AA%92%E4%BD%93%E4%B8%8E%E8%AE%A4%E7%9F%A5%E5%A4%A7%E4%BD%9C%E4%B8%9A_%E7%8E%8B%E7%AB%A5_%E4%BB%BB%E8%BE%BE%E4%BC%9F_%E5%8D%95%E6%98%AD/%E8%BD%BB%E6%8B%B3.jpg)
+![](assets/轻拳.jpg)
 
 
 
@@ -244,7 +240,7 @@ private void W_Click(object sender, EventArgs e)
 
 当识别到手呈向下大拇指状时，控制人物出肘击。
 
-![](../../%E5%AD%A6%E4%B9%A0%EF%BC%88%E7%A1%AC%E8%AF%BE%EF%BC%89/%E5%AA%92%E4%BD%93%E4%B8%8E%E8%AE%A4%E7%9F%A5/%E5%A4%A7%E4%BD%9C%E4%B8%9A/%E5%AA%92%E4%BD%93%E4%B8%8E%E8%AE%A4%E7%9F%A5%E5%A4%A7%E4%BD%9C%E4%B8%9A_%E7%8E%8B%E7%AB%A5_%E4%BB%BB%E8%BE%BE%E4%BC%9F_%E5%8D%95%E6%98%AD/%E8%82%98%E5%87%BB.jpg)
+![](assets/肘击.jpg)
 
 
 
